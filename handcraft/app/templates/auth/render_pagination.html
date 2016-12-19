@@ -1,0 +1,19 @@
+{% macro render_pagination(pagination) %}
+<div class=pagination>
+    {% if pagination.has_prev %}
+        <a href="/user?page={{ pagination.prev_num }}" class="btn btn-info btn-sm">上一页</a>
+    {% endif %}
+                          
+    {% for i in range(total):%}
+        {% if i %}
+            <a href="/user?page={{i+1}}" class="btn btn-info btn-sm">{{i+1}}></a>  
+        {% else %}
+            <span class=ellipsis>…</span>
+        {% endif %}
+    {%endfor%}
+  
+    {% if pagination.has_next %}
+       <a href="/user?page={{ pagination.next_num }}" class="btn btn-info btn-sm">下一页</a>
+    {% endif %}
+</div>
+{% endmacro %}

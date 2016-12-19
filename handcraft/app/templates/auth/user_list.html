@@ -1,0 +1,120 @@
+{% include "base.html" %}
+{% block content %}
+
+<main class="main">
+    <!-- Breadcrumb -->
+    <ol class="breadcrumb m-b-0">
+        <li><a href="/">Home</a></li>
+        <li><a href="#">Library</a></li>
+        <li class="active">User</li>
+    </ol>
+    <div class="container-fluid">
+        <form class="m-t" role="form" method="post" action="">
+            {{ form.csrf_token }}
+            <div class="animated fadeIn">
+                <div class="row row-equal">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <i class="fa fa-align-justify"></i> 用户信息
+                            </div>
+                            <div class="card-header">
+                                <a target="_self" href="/user_add" class="btn btn-sm btn-primary"> 添加用户 </a>
+                                <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#confirm-delete_ajax" >删除所选</button>
+                            </div>
+                            <div class="card-block">
+                                
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th><input type="checkbox" id="select_all" onclick="selectAll()" name="select_all"></th>
+                                            <th>姓名</th>
+                                            <th>邮箱</th>
+                                            <th>电话</th>
+                                            <th>角色</th>
+                                            <th>状态</th>
+                                            <th>操作</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for obj in object_list %}
+                                        <tr>
+                                            <td class="text-center">
+                                                <input type="checkbox" name="selected" value="{{ obj.id }}">
+                                            </td>
+                                            <td>{{ obj.username }}</td>
+                                            <td>{{ obj.email }}</td>
+                                            <td>{{ obj.phone }}</td>
+                                            {% if obj.role == "0" %}
+                                            <td>
+                                                <span style="font-size:90%" class="label label-success">超级管理员</span>
+                                            </td>
+                                            {% elif obj.role == "1" %}
+                                            <td>
+                                                <span style="font-size:90%" class="label label-warning">部门管理员</span>
+                                            </td>
+                                            {% elif obj.role == "2" %}
+                                            <td>
+                                                <span style="font-size:90%" class="label label-default">普通用户</span>
+                                            </td>
+                                            {% endif %}
+                                            
+                                            {% if obj.active == "0" %}
+                                            <td>
+                                                <span style="font-size:90%" class="label label-success">Active</span>
+                                            </td>
+                                            {% elif obj.active == "1" %}
+                                            <td>
+                                                <span style="font-size:90%" class="label label-default">Inactive</span>
+                                            </td>
+                                            {% else %}
+                                            <td>
+                                                <span style="font-size:90%" class="label label-danger">Banned</span>
+                                            </td>
+                                            {% endif %}
+                                            <td style="display:block">
+                                                <a style="font-size:95%" href="/profile/{{ obj.username }}" class="label label-success">详情</a>
+                                                <a style="font-size:95%" href="/setting/{{ obj.username }}" class="label label-primary">编辑</a>
+                                                <a style="font-size:95%" class="label label-danger" data-toggle="modal" data-target="#confirm-delete" data-href="/delete/{{ obj.username }}">删除</a>
+                                                <a style="font-size:95%" href="/activation/{{ obj.username }}" class="label label-warning">激活</a>
+                                                <a style="font-size:95%" href="/forbidden/{{ obj.username }}" class="label label-default">停用</a>
+                                            </td>
+                                        </tr>
+                                        {% endfor %} 
+                                    </tbody>
+                                </table>
+                                
+                                <div class="card-block">        
+                                    {% if pagination.has_prev %}
+                                        <a href="/user?page={{ pagination.prev_num }}" class="btn btn-info btn-sm">上一页</a>
+                                    {% endif %}
+                                                          
+                                    {% for i in range(total):%}  
+                                        {% if i != pagination.i %}
+                                            <a href="/user?page={{i+1}}" class="btn btn-info btn-sm">{{i+1}}</a> 
+                                        {% else %}
+                                            <a href="/user?page={{i+1}}" class="btn btn-info btn-sm" disabled="disabled">{{i+1}}</a>
+                                        {% endif %}   
+                                    {%endfor%}
+                                        
+                                    {% if pagination.has_next %}
+                                       <a href="/user?page={{ pagination.next_num }}" class="btn btn-info btn-sm">下一页</a>
+                                    {% endif %}      
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>  
+            {% include 'confirm-delete.html' %}
+        </form>
+    </div>    
+</main>
+
+<script language="javascript">
+    $('#confirm-delete').on('show.bs.modal', function(e) {
+        $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+    })
+</script>
+
+{% endblock %}

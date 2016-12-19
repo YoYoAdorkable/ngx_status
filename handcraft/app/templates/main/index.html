@@ -1,0 +1,226 @@
+{% extends "base.html" %}
+
+{% block content %} 
+
+        
+        <main class="main">
+            <ol class="breadcrumb m-b-0">
+                <li><a href="/">Home</a></li>
+                <li><a href="#">Library</a></li>
+                <li class="active">Data</li>
+            </ol>
+            <div class="container-fluid">
+                <div class="animated fadeIn">
+                    <div class="card-group m-b-1">
+                        <div class="card">
+                            <div class="card-block">
+                                <div class="h1 text-muted text-xs-right m-b-2">
+                                    <i class="icon-user"></i>
+                                </div>
+                                <div class="h4 m-b-0"><a href="/user">{{ User_count }}</a></div>
+                                <small class="text-muted text-uppercase font-weight-bold">Users</small>
+                                <progress class="progress progress-xs progress-info m-t-1 m-b-0" value="25" max="100">25%</progress>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-block">
+                                <div class="h1 text-muted text-xs-right m-b-2">
+                                    <i class="icon-people"></i>
+                                </div>
+                                <div class="h4 m-b-0"><a href="/group">{{ Group_count }}</a></div>
+                                <small class="text-muted text-uppercase font-weight-bold">Groups</small>
+                                <progress class="progress progress-xs progress-success m-t-1 m-b-0" value="25" max="100">25%</progress>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-block">
+                                <div class="h1 text-muted text-xs-right m-b-2">
+                                    <i class="icon-basket-loaded"></i>
+                                </div>
+                                <div class="h4 m-b-0">1238</div>
+                                <small class="text-muted text-uppercase font-weight-bold">Products sold</small>
+                                <progress class="progress progress-xs progress-warning m-t-1 m-b-0" value="25" max="100">25%</progress>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-block">
+                                <div class="h1 text-muted text-xs-right m-b-2">
+                                    <i class="icon-pie-chart"></i>
+                                </div>
+                                <div class="h4 m-b-0">28%</div>
+                                <small class="text-muted text-uppercase font-weight-bold">Returning Visitors</small>
+                                <progress class="progress progress-xs progress-primary m-t-1 m-b-0" value="25" max="100">25%</progress>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-block">
+                                <div class="h1 text-muted text-xs-right m-b-2">
+                                    <i class="icon-speedometer"></i>
+                                </div>
+                                <div class="h4 m-b-0">5:34:11</div>
+                                <small class="text-muted text-uppercase font-weight-bold">Avg. Time</small>
+                                <progress class="progress progress-xs progress-danger m-t-1 m-b-0" value="25" max="100">25%</progress>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="wrapper" id="wrapper">
+    
+                    </div>
+                    
+                    {% include "auth_body_meta.html" %}
+                      
+                    <div class="row row-equal">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-block">
+                                    <div class="row">
+                                        <div class="col-xs-5 p-x-1">
+                                            <h4 class="card-title">Traffic</h4>
+                                            <div class="small text-muted" style="margin-top:-10px;">Last 10 minutes</div>
+                                        </div>
+                                    </div>
+                                    <div class="chart-wrapper" style="height:289px;margin-top:30px;">
+                                        <canvas id="traffic-chart" height="277"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-block">
+                                    <div class="row">
+                                        <div class="col-sm-5">
+                                            <h3 class="card-title clearfix m-b-0">Requests</h3>
+                                        </div>
+                                        <div class="col-sm-7">
+                                            <button type="button" class="btn btn-sm btn-success-outline pull-right m-l-1"><i></i> &nbsp; 2016-09-26</button>
+                                            <fieldset class="form-group pull-right">
+                                                <div class="input-group input-group-sm pull-right" style="width:230px;">
+                                                    <span class="input-group-addon"><i></i>www.yoyohandcraft.cn</span>
+                                                </div>
+                                            </fieldset>
+                                        </div>
+                                    </div>
+                                    <hr class="m-a-0">
+                                    <div class="row">
+                                        <div class="col-sm-12 col-lg-4">
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <div class="callout callout-info">
+                                                        <small class="text-muted">Total</small>
+                                                        <br>
+                                                        <strong class="h4">9,123</strong>
+                                                        <div class="chart-wrapper">
+                                                            <canvas id="sparkline-chart-1" width="100" height="30"></canvas>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div class="callout callout-danger">
+                                                        <small class="text-muted">Recuring Clients</small>
+                                                        <br>
+                                                        <strong class="h4">22,643</strong>
+                                                        <div class="chart-wrapper">
+                                                            <canvas id="sparkline-chart-2" width="100" height="30"></canvas>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <hr class="m-t-0">
+                                        </div>
+                                        <!--/.col-->
+                                        <div class="col-sm-6 col-lg-4">
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <div class="callout callout-warning">
+                                                        <small class="text-muted">Pageviews</small>
+                                                        <br>
+                                                        <strong class="h4">78,623</strong>
+                                                        <div class="chart-wrapper">
+                                                            <canvas id="sparkline-chart-3" width="100" height="30"></canvas>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div class="callout callout-success">
+                                                        <small class="text-muted">Organic</small>
+                                                        <br>
+                                                        <strong class="h4">49,123</strong>
+                                                        <div class="chart-wrapper">
+                                                            <canvas id="sparkline-chart-4" width="100" height="30"></canvas>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <hr class="m-t-0">
+                                        </div>
+                                        <div class="col-sm-6 col-lg-4">
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <div class="callout">
+                                                        <small class="text-muted">CTR</small>
+                                                        <br>
+                                                        <strong class="h4">23%</strong>
+                                                        <div class="chart-wrapper">
+                                                            <canvas id="sparkline-chart-5" width="100" height="30"></canvas>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div class="callout callout-primary">
+                                                        <small class="text-muted">Bounce Rate</small>
+                                                        <br>
+                                                        <strong class="h4">5%</strong>
+                                                        <div class="chart-wrapper">
+                                                            <canvas id="sparkline-chart-6" width="100" height="30"></canvas>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <hr class="m-t-0">
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>Url</th>
+                                                <th>2xx</th>
+                                                <th>3xx</th>
+                                                <th>4xx</th>
+                                                <th>5xx</th>
+                                                <th>Requests Total</th>
+                                                <th>Error Total</th>
+                                                <th>0 ~ 100(ms)</th>
+                                                <th>100 ~ 500(ms)</th>
+                                                <th>500 ~ 1000(ms)</th>
+                                                <th>1000 ~ Inf(ms)</th>
+                                                <th>Miss</th>
+                                                <th>Hit</th>
+                                                <th>Expired</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <td>
+                                               
+                                            </td>
+                                        
+                                        
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+</main>
+
+
+
+{% endblock %}

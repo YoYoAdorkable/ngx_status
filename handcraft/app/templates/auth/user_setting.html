@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+{% block content %}
+<main class="main">
+    <!-- Breadcrumb -->
+    <ol class="breadcrumb m-b-0">
+        <li><a href="/">Home</a></li>
+        <li><a href="#">Library</a></li>
+        <li class="active">Setting</li>
+    </ol>
+    <div class="container-fluid">
+        <div class="animated fadeIn">
+            <div class="row row-equal">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <i class="fa fa-align-justify"></i> {{ results.username }} 基本信息修改
+                        </div>
+                        <div class="card-block p-a-2">
+                            <form class="m-t" role="form" method="post" action="">
+                                {{ form.csrf_token }}
+                                <div class="input-group m-b-1">
+                                    <input id="id" name="id" placeholder="id" type="text" class="form-control" value="{{ results.id }}" style="display: none">
+                                </div>
+                                <div class="input-group m-b-1">
+                                    <span class="input-group-addon"><i class="icon-user"></i> 姓名</span>
+                                    <input id="username" name="username" placeholder="Name" type="text" class="form-control" value="{{ results.username }}">
+                                </div>
+                                <div class="input-group m-b-1">
+                                    <span class="input-group-addon">@ 邮箱</span>
+                                    <input id="email" name="email" placeholder="email" type="text" class="form-control" value="{{ results.email }}">
+                                </div>
+                                <div class="input-group m-b-1">
+                                    <span class="input-group-addon"><i class="icon-phone"></i> 手机</span>
+                                    <input id="phone" name="phone" placeholder="phone" type="text" class="form-control" value="{{ results.phone }}">
+                                </div>
+                                <div class="input-group m-b-1">
+                                    <span class="input-group-addon"><i class="icon-user"></i> 角色</span>
+                                    <select class="form-control" name="role" id="role">
+                                        {% if current_user.role == "0" %}
+                                        <option value='0' selected="selected">超级管理员</option>
+                                        <option value='1'>部门管理员</option>
+                                        <option value='2'>普通用户</option>
+                                        {% elif current_user.role == "1" %}
+                                        <option value='1' selected="selected">部门管理员</option>
+                                        <option value='0' >超级管理员</option>
+                                        <option value='2'>普通用户</option>
+                                        {% elif current_user.role == "2" %}
+                                        <option value='2' selected="selected">普通用户</option>
+                                        <option value='0' >超级管理员</option>
+                                        <option value='1'>部门管理员</option>
+                                        {% endif %}
+                                    </select>
+                                </div>
+                                
+                                
+                                <div class="input-group m-b-1">
+                                    <span class="input-group-addon"><i class="icon-user"></i> 属组</span>
+                                    <div class="col-sm-14">
+                                        <tr>
+                                        
+                                            {% for group in group_all %}
+                                                {% if group.name in groups %}
+                                                    <input name=ug type=checkbox value={{ group.id }} checked>{{ group.name }}
+                                                    <!--option value="{{ group.id }}" selected>{{ group.name }}</option-->
+                                                {% else %}
+                                                    <input name=ug type=checkbox value={{ group.id }}> {{ group.name }}
+                                                {% endif %}
+                                            {% endfor %}
+                                        
+                                        </tr>
+                                    </div>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <button type="submit" class="btn btn-primary p-x-2">提交</button>
+                                    </div>
+                                    <div class="col-xs-6 text-xs-right">
+                                        <a href="/user"><input type="button" class="btn btn-link p-x-0" name="取消" value="取消"/></a>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="/static/js/libs/jquery.min.js"></script>
+    <script src="/static/js/libs/tether.min.js"></script>
+    <script src="/static/js/libs/bootstrap.min.js"></script>
+</main>
+{% endblock %}
+

@@ -1,0 +1,23 @@
+{% include "base.html" %}
+
+{% block content %}	
+<main class="main">
+<link href="/static/css/style.css" rel="stylesheet">
+<div class="container">
+	<h2>使用Bootstrap创建弹出框</h2>
+	<div class="well">
+		<a href="#" id="example" class="btn btn-success" rel="popover" data-content="为我的网站创建一个提示框如此简单！" data-original-title="Bootstrap弹出框">悬停弹出框</a>
+	</div>
+</div>
+</main>
+<script src="/static/js/libs/jquery.min.js"></script>
+<script src="/static/js/views/bootstrap-tooltip.js"></script>
+<script src="/static/js/views/bootstrap-popover.js"></script>
+<script>
+$(function (){ 
+	$("#example").popover();
+});
+</script>
+    
+{% endblock %}
+

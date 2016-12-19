@@ -1,0 +1,106 @@
+                    <script src="/static/js/libs/jquery.min.js"></script>
+                    <script id="status-tpl" type="text/template">
+                        <div class="row row-equal">
+                            <div class="col-md-3">
+                                <div class="card">
+                                    <div class="card-block">
+                                        <table class="dashboard-table">
+                                            <tbody>
+                                                <tr>
+                                                    <td>Version</td>
+                                                    <td><strong>${status.nginx_version}</strong>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Address</td>
+                                                    <td><strong>${status.nginx_ip}</strong>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>PID</td>
+                                                    <td><strong>${status.nginx_pid}</strong>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Uptime</td>
+                                                    <td><strong>${status.nginx_uptime}</strong>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="col-md-6">
+                                <div class="card">
+                                    <div class="card-block">
+                                        <div class="col-subtitle">
+                                            <div class="col-subtitle-toggle noselect"><span class="active">Connections</span></div>
+                                            <div class="col-subtitle-toggle"><span class=""></span></div>
+                                            <span class="col-subtitle__gray pull-right"></span>
+                                        </div>
+                                    </div>
+                                    <table class="dashboard-horizontal-table full-width">
+                                        <thead>
+                                            <tr>
+                                                <th class=""></th>
+                                                <th>Active</th>
+                                                <th>Reading</th>
+                                                <th>Writing</th>
+                                                <th class="">Waiting</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class=""></td>
+                                                <td>${status.nginx_active}</td>
+                                                <td>${status.nginx_reading}</td>
+                                                <td>${status.nginx_writing}</td>
+                                                <td class="">${status.nginx_waiting}</td>
+                                            </tr>
+                                        </tbody> 
+                                    </table>      
+                                </div>
+                            </div>
+                                     
+                            <div class="col-md-3">
+                                <div class="card">
+                                    <div class="card-block">
+                                        <div class="col-subtitle">
+                                            <div class="col-subtitle-toggle noselect"><span class="active">Requests</span></div>
+                                            <div class="col-subtitle-toggle"><span class=""></span></div>
+                                            <span class="col-subtitle__gray pull-right"></span>
+                                        </div>
+                                    </div>
+                                    <table class="dashboard-horizontal-table full-width">
+                                        <thead>
+                                            <tr>
+                                                <th class=""></th>
+                                                <th>Current</th>
+                                                <th class="">TOTAL</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class=""></td>
+                                                <td>${status.nginx_current}</td>
+                                                <td class="">${status.nginx_total}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>  
+                            </div>
+                        </div>
+                                            
+                    </script>
+                    
+                    <script type="text/javascript">
+                        var APP = {};
+                    </script>
+                    <script src="/static/mio/information.js"></script>
+                    <script type="text/javascript">
+                        APP.Status.init();
+                    </script>
+                    
+                    <script src="/static/js/views/traffic.js"></script>

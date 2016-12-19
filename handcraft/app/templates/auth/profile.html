@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+{% block content %}
+<main class="main">
+    <!-- Breadcrumb -->
+    <ol class="breadcrumb m-b-0">
+        <li><a href="/">Home</a></li>
+        <li><a href="#">Library</a></li>
+        <li class="active">Profile</li>
+    </ol>
+ 
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="col-lg-4">
+            <div class="ibox float-e-margins">
+                <div class="card-header">
+                    <i class="fa fa-align-justify"></i> {{ results.username }} 基本信息
+                </div>
+                <div class="ibox-content">
+                    <div>
+                        <div class="text-left">
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <td>姓名</td>
+                                        <td><strong>{{ results.username }}</strong>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>邮箱</td>
+                                        <td><strong>{{ results.email }}</strong>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>电话</td>
+                                        <td><strong>{{ results.phone }}</strong>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>角色</td>
+                                        {% if results.role == "0" %}
+                                            <td><span class="label label-success">超级管理员</span>
+                                            </td>
+                                        {% elif results.role == "1" %}
+                                            <td><span class="label label-success">部门管理员</span>
+                                            </td>
+                                        {% elif results.role == "2" %}
+                                            <td><span class="label label-success">普通用户</span>
+                                            </td>
+                                        {% endif %}
+                                    </tr>
+                                    <tr>
+                                        <td>状态</td>
+                                        {% if results.active == "0" %}
+                                        <td>
+                                            <span class="label label-success">Active</span>
+                                        </td>
+                                        {% elif results.active == "1" %}
+                                        <td>
+                                            <span class="label label-default">Inactive</span>
+                                        </td>
+                                        {% else %}
+                                        <td>
+                                            <span class="label label-danger">Banned</span>
+                                        </td>
+                                        {% endif %} 
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="col-lg-4">
+            <div class="ibox float-e-margins">
+                <div class="card-header">
+                    <i class="fa fa-align-justify"></i> 所在用户组信息
+                </div>
+                <div class="ibox-content">
+                    <small><i class="fa fa-map-marker"></i> 这里包含了所有用户组的授权.</small>
+                    <div>
+                        <div class="text-left">
+                            <table class="table">
+                                <tbody>
+                                    {% for group in groups %}
+                                        <tr>
+                                            <td><strong>{{ group }}</strong></td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+    <script src="/static/js/libs/jquery.min.js"></script>
+    <script src="/static/js/libs/tether.min.js"></script>
+    <script src="/static/js/libs/bootstrap.min.js"></script>
+</main>
+{% endblock %}
+

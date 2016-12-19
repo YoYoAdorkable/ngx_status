@@ -1,0 +1,87 @@
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="Handcraft">
+        <meta name="author" content="Lukasz Holeczek">
+        <meta name="keyword" content="Handcraft">
+        <link rel="shortcut icon" href="/static/ico/favicon.png">
+        <title>Handcraft</title>
+        <link href="static/css/style.css" rel="stylesheet">
+    </head>
+    <body class="">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                {% for category, message in get_flashed_messages(with_categories=true) %}
+                <div class="alert alert-{{ category }} alert-dismissable">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    {{ message }}
+                </div>
+                {% endfor %}
+                    <div class="card-group vamiddle">
+                        <div class="card  p-a-2">
+                            <div class="card-block">
+                                <h1></h1>
+                                <p></p>
+                                <form class="m-t" role="form" method="post" action="{{url_for('auth.login')}}">
+                                    {{ form.csrf_token }}
+                                    <div class="input-group m-b-1">
+                                        <span class="input-group-addon"><i class="icon-user"></i></span>
+                                        {{ form.email(class='form-control', placeholder='请输入您的电子邮件', required='') }}
+                                    </div>
+                                    <div class="input-group m-b-2">
+                                        <span class="input-group-addon"><i class="icon-lock"></i></span>
+                                        {{ form.password(class='form-control', placeholder='请输入您的密码', required='') }}
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-6">
+                                            <button type="submit" class="btn btn-primary p-x-2">登录</button>
+                                        </div>
+                                        <div class="col-xs-6 text-xs-right">
+                                            <a href="reset"><input type="button" class="btn btn-link p-x-0" name="忘记密码" value="忘记密码"/></a>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="card card-inverse card-primary p-y-3" style="width:44%">
+                            <div class="card-block text-xs-center">
+                                <div>
+                                    <h2></h2>
+                                    <p>Handcraft, 可以查看资产信息,API接口状态,Nginx访问状态! </p>
+                                    <a href="register"><input type="button" class="btn btn-primary active m-t-1" name="注册账号" value="注册账号"/></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Bootstrap and necessary plugins -->
+        <script src="static/js/libs/jquery.min.js"></script>
+        <script src="static/js/libs/tether.min.js"></script>
+        <script src="static/js/libs/bootstrap.min.js"></script>
+        <script>
+        function verticalAlignMiddle()
+        {
+            var bodyHeight = $(window).height();
+            var formHeight = $('.vamiddle').height();
+            var marginTop = (bodyHeight / 2) - (formHeight / 2);
+            if (marginTop > 0)
+            {
+                $('.vamiddle').css('margin-top', marginTop);
+            }
+        }
+        $(document).ready(function()
+        {
+            verticalAlignMiddle();
+        });
+        $(window).bind('resize', verticalAlignMiddle);
+        </script>
+        
+        
+    </body>
+</html>

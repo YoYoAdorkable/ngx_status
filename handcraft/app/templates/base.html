@@ -1,0 +1,185 @@
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="Handcraft">
+        <meta name="author" content="Lukasz Holeczek">
+        <meta name="keyword" content="Handcraft">
+        <title>Handcraft</title>
+        <link href="/static/css/style.css" rel="stylesheet">
+        <link rel="shortcut icon" href="/static/img/favicon.ico" type="image/x-icon">
+        
+    </head>
+    <body class="navbar-fixed sidebar-nav fixed-nav">
+       
+        <header class="navbar">
+            <div class="container-fluid">
+                <button class="navbar-toggler mobile-toggler hidden-lg-up" type="button">&#9776;</button>
+                <a class="navbar-brand" href="#"></a>
+                <ul class="nav navbar-nav hidden-md-down">
+                    <li class="nav-item">
+                        <a class="nav-link navbar-toggler layout-toggler" href="#">☰</a>
+                    </li>
+                    <li class="nav-item p-x-1">
+                        <a class="nav-link" href="/index">Dashboard</a>
+                    </li>
+                    {% if current_user.role == "0" or current_user.role == "1" %}
+                    <li class="nav-item p-x-1">
+                        <a class="nav-link" href="/user">Users</a>
+                    </li>
+                    <li class="nav-item p-x-1">
+                        <a class="nav-link" href="/group">Group</a>
+                    </li>
+                    {% endif %}
+                </ul>
+                <ul class="nav navbar-nav pull-right hidden-md-down">
+                    <li class="nav-item dropdown">
+                        {% if current_user.token %}
+                            <a href='/edit_avatar'><img src="/static/img/avatars/{{ current_user.username }}.jpg" class="img-avatar" alt="admin@bootstrapmaster.com"></a>
+                        {% else %}
+                            <a href='/edit_avatar'><img src="/static/img/avatars/6.jpg" class="img-avatar" alt="admin@bootstrapmaster.com"></a>
+                        {% endif %}
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                            <span class="hidden-md-down">{{ current_user.username }}</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <div class="dropdown-header text-xs-center">
+                                <strong>Settings</strong>
+                            </div>
+                            <a class="dropdown-item" href="/profile/{{ current_user.username }}"><i class="fa fa-user"></i> Profile</a>
+                            <a class="dropdown-item" href="/setting/{{ current_user.username }}"><i class="fa fa-wrench"></i> Settings</a>
+                            <div class="divider"></div>
+                            <a class="dropdown-item" href="/logout"><i class="fa fa-lock"></i> Logout</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link navbar-toggler aside-toggle" href="#">&#9776;</a>
+                    </li>
+                </ul>
+            </div>
+        </header>
+        <div class="sidebar">
+            <nav class="sidebar-nav">
+                <ul class="nav">
+                    <li class="nav-title">
+                        Dashboard
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/index"><i class="icon-speedometer"></i> DASHBOARD <!--span class="label label-info">NEW</span--></a>
+                    </li>
+                    <li class="divider"></li>
+                    <li class="nav-title">
+                        UI Elements
+                    </li>
+                    <li class="nav-item nav-dropdown">
+                        <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-puzzle"></i> Components</a>
+                        <ul class="nav-dropdown-items">
+                            <li class="nav-item">
+                                <a class="nav-link" href="components-buttons.html"><i class="icon-puzzle"></i> BUTTONS</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="components-social-buttons.html"><i class="icon-puzzle"></i> Social Buttons</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="components-cards.html"><i class="icon-puzzle"></i> CARDS</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="components-forms.html"><i class="icon-puzzle"></i> FORMS</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="components-switches.html"><i class="icon-puzzle"></i> SWITCHES</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="components-tables.html"><i class="icon-puzzle"></i> TABLES</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item nav-dropdown">
+                        <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-star"></i> ICONS</a>
+                        <ul class="nav-dropdown-items">
+                            <li class="nav-item">
+                                <a class="nav-link" href="icons-font-awesome.html"><i class="icon-star"></i> Font Awesome</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="icons-simple-line-icons.html"><i class="icon-star"></i> Simple Line Icons</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item nav-dropdown">
+                        <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-energy"></i> Plugins</a>
+                        <ul class="nav-dropdown-items">
+                            <li class="nav-item">
+                                <a class="nav-link" href="plugins-calendar.html"><i class="icon-calendar"></i> CALENDAR</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="plugins-notifications.html"><i class="icon-info"></i> NOTIFICATIONS</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="plugins-sliders.html"><i class="icon-equalizer"></i> SLIDERS</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="plugins-tables.html"><i class="icon-list"></i> TABLES</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="forms.html"><i class="icon-note"></i> FORMS <span class="label label-danger">NEW</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="widgets.html"><i class="icon-calculator"></i> WIDGETS <span class="label label-info">NEW</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="charts.html"><i class="icon-pie-chart"></i> CHARTS</a>
+                    </li>
+                    <li class="divider"></li>
+                </ul>
+            </nav>
+        </div>
+        <!-- Main content -->
+        {## flask 引用 ##} 
+        {% block content %}
+        {% endblock %}
+
+        <footer class="footer ng-scope">
+            <span class="pull-right text-muted">
+                版权信息：Copyright© 2009-2016  Handcraft™  Powered by <a href="/about">Handcraft</a>
+            </span>
+        </footer>  
+        
+        <script src="/static/js/libs/jquery.min.js"></script>
+        <script src="/static/js/libs/tether.min.js"></script>
+        <script src="/static/js/libs/bootstrap.min.js"></script>
+        <script src="/static/js/libs/pace.min.js"></script>
+        <script src="/static/js/views/shared.js"></script>
+        <script src="/static/js/app.js"></script>
+        <script src="/static/js/libs/toastr.min.js"></script>
+        <script src="/static/js/libs/gauge.min.js"></script>
+        <script src="/static/js/libs/moment.min.js"></script>
+        <script src="/static/js/libs/daterangepicker.min.js"></script>
+        <script src="/static/mio/juicer-min.js"></script>
+        <script src="/static/js/views/main.js"></script>
+        <script src="/static/js/libs/Chart.min.js"></script>
+    
+        <script>
+            function selectAll(){
+            var checklist = document.getElementsByName ("selected");
+            if(document.getElementById("select_all").checked)
+            {
+            for(var i=0;i<checklist.length;i++)
+            {
+              checklist[i].checked = 1;
+            }
+            }else{
+            for(var j=0;j<checklist.length;j++)
+            {
+             checklist[j].checked = 0;
+            }
+            }
+
+            }
+        </script>   
+    </body>
+</html>

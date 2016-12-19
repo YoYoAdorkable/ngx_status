@@ -1,0 +1,59 @@
+{% include "base.html" %}
+{% block content %}
+<main class="main">
+    <!-- Breadcrumb -->
+    <ol class="breadcrumb m-b-0">
+        <li><a href="/">Home</a></li>
+        <li><a href="#">Library</a></li>
+        <li class="active">Group</li>
+    </ol>
+    <div class="container-fluid">
+        <div class="animated fadeIn">
+            <div class="row row-equal">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <i class="fa fa-align-justify"></i> 用户组信息
+                        </div>
+                        <div class="card-header">
+                            <a target="_self" href="/group_add" class="btn btn-sm btn-primary "> 添加用户组 </a>
+                        </div>
+                        <div class="card-block">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>组名</th>
+                                        <th>备注</th>
+                                        <th>操作</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for group in results %}
+                                    <tr>
+                                        <td>{{ group.name }}</td>
+                                        <td>{{ group.comment }}</td>
+                                        <td style="display:block">
+                                            <a style="font-size:95%" href="/editor/{{ group.name }}" class="label label-primary">编辑</a>
+                                            <a style="font-size:95%" href="/erased/{{ group.name }}" class="label label-danger" data-toggle="modal" data-target="#confirm-delete" data-href="/erased/{{ group.name }}">删除</a>  
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% include 'confirm-delete.html' %}
+    
+</main>
+
+<script language="javascript">
+    $('#confirm-delete').on('show.bs.modal', function(e) {
+        $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+    })
+</script>
+
+{% endblock %}

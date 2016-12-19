@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block content %}
+<main class="main">
+    <!-- Breadcrumb -->
+    <ol class="breadcrumb m-b-0">
+        <li><a href="/">Home</a></li>
+        <li><a href="#">Library</a></li>
+        <li class="active">Setting</li>
+    </ol>
+    <div class="container-fluid">
+        <div class="animated fadeIn">
+            <div class="row row-equal">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <i class="fa fa-align-justify"></i> {{ results.name }} 基本信息修改
+                        </div>
+                        <div class="card-block p-a-2">
+                            <form class="m-t" role="form" method="post" action="">
+                                {{ form.csrf_token }}
+                                <div class="input-group m-b-1">
+                                    <input id="id" name="id" placeholder="id" type="text" class="form-control" value="{{ results.id }}" style="display: none">
+                                </div>
+                                <div class="input-group m-b-1">
+                                    <span class="input-group-addon"><i class="fa fa-group"></i> 组名</span>
+                                    <input id="name" name="name" placeholder="Name" type="text" class="form-control" value="{{ results.name }}">
+                                </div>
+                                <div class="input-group m-b-1">
+                                    <span class="input-group-addon"><i class="fa fa-commenting"></i> 备注</span>
+                                    <input id="comment" name="comment" placeholder="comment" type="text" class="form-control" value="{{ results.comment }}">
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <button type="submit" class="btn btn-primary p-x-2">提交</button>
+                                    </div>
+                                    <div class="col-xs-6 text-xs-right">
+                                        <a href="/group"><input type="button" class="btn btn-link p-x-0" name="取消" value="取消"/></a>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="/static/js/libs/jquery.min.js"></script>
+    <script src="/static/js/libs/tether.min.js"></script>
+    <script src="/static/js/libs/bootstrap.min.js"></script>
+</main>
+{% endblock %}
+

@@ -1,0 +1,69 @@
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="Handcraft">
+        <meta name="author" content="Lukasz Holeczek">
+        <meta name="keyword" content="Handcraft">
+        <title>Handcraft</title>
+        <link href="static/css/style.css" rel="stylesheet">
+    </head>
+    <body class="">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5 center-block pull-xs-none">
+                {% for category, message in get_flashed_messages(with_categories=true) %}
+                <div class="alert alert-{{ category }} alert-dismissable">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    {{ message }}
+                </div>
+                {% endfor %}
+                    <div class="card vamiddle">
+                        <div class="card-block p-a-2">
+                            <h1>Reset</h1>
+                            <p class="text-muted">Reset your account</p>
+                            <form class="m-t" role="form" method="post" action="{{url_for('auth.reset')}}">
+                                {{ form.csrf_token }}
+                                <div class="input-group m-b-1">
+                                    <span class="input-group-addon">@</span>
+                                    {{ form.email(class='form-control', placeholder='请输入您的邮箱地址', required='') }}
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <button type="submit" class="btn btn-primary p-x-2">下一步</button>
+                                    </div>
+                                    <div class="col-xs-6 text-xs-right">
+                                        <a href="index"><input type="button" class="btn btn-link p-x-0" name="取消" value="取消"/></a>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="static/js/libs/jquery.min.js"></script>
+        <script src="static/js/libs/tether.min.js"></script>
+        <script src="static/js/libs/bootstrap.min.js"></script>
+        <script>
+        function verticalAlignMiddle()
+        {
+            var bodyHeight = $(window).height();
+            var formHeight = $('.vamiddle').height();
+            var marginTop = (bodyHeight / 2) - (formHeight / 2);
+            if (marginTop > 0)
+            {
+                $('.vamiddle').css('margin-top', marginTop);
+            }
+        }
+        $(document).ready(function()
+        {
+            verticalAlignMiddle();
+        });
+        $(window).bind('resize', verticalAlignMiddle);
+        </script>
+        
+        
+    </body>
+</html>
