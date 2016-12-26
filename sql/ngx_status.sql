@@ -216,7 +216,7 @@ CREATE TABLE `user` (
 --  Records of `user`
 -- ----------------------------
 BEGIN;
-INSERT INTO `user` VALUES ('1', 'yuhailong880106@gmail.com', 'handcraft', '', 'pbkdf2:sha1:1000$vjiz4Nji$d6adbbc826b2392541143f7f8180c592aba876d9', '0', '0'), ('8', 'yu.hailong@kuyun.com', '于海龙', '18612189569', 'pbkdf2:sha1:1000$gzjZLzHR$0c5d932a595219897fbdbab5f18c6e2e2ecd496a', '1', '0');
+INSERT INTO `user` VALUES ('1', 'yuhailong880106@gmail.com', 'handcraft', '', 'pbkdf2:sha1:1000$vjiz4Nji$d6adbbc826b2392541143f7f8180c592aba876d9', '0', '0');
 COMMIT;
 
 SET FOREIGN_KEY_CHECKS = 1;
